@@ -1,0 +1,58 @@
+//-
+  Copyright 2015 Landstinget Dalarna Bibliotek och Informationscentral
+  Copyright 2015 Emil Hemdal (@emilhem)
+  
+  
+  This file is part of Aaron.
+  
+  Aaron is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  Aaron is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU Affero General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with Aaron.  If not, see <http://www.gnu.org/licenses/>.
+
+extends ./includes/base.jade
+
+block title
+  title=title
+
+block content
+  div.help-tab
+    div
+      a.button(href='/help' target='_blank') Hjälp
+  div.row
+    div.large-12.columns
+      h1 Välkommen till Aaron
+      p Du behöver logga in för att fortsätta!
+  form(action='/login' method='POST')
+    input(type='hidden' name='login' value='login')
+    input(type='hidden' name='previousPath' value=currentPath)
+    div.row
+      div.large-12.columns
+        label
+          | E-postadress
+          input#email(type='email' name='email' placeholder='E-postadress')
+        label
+          | Lösenord
+          input#password(type='password' name='password' placeholder='Lösenord')
+    div.row
+      div.large-12.columns.text-right
+        input.button.large(type='submit' value='Logga in')
+  div.row
+    div.large-12.columns
+      p.float-left
+        a.lg-click(href='/new-password') Glömt lösenordet?
+      p.float-right
+        a.lg-click(href='/new-account') Skapa nytt konto
+
+  script(src='js/vendor/jquery.min.js')
+  script(src='js/vendor/what-input.min.js')
+  script(src='js/foundation.min.js')
+  script(src='js/login.js')

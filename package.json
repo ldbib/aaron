@@ -1,0 +1,62 @@
+{
+  "name": "aaron",
+  "version": "2.0.0",
+  "description": "Aaron",
+  "main": "server.js",
+  "dependencies": {
+    "babel-preset-react": "^6.3.13",
+    "babelify": "^7.2.0",
+    "body-parser": "^1.14.2",
+    "cookies": "^0.5.1",
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "js-cookie": "^2.0.3",
+    "lodash": "^3.10.1",
+    "moment": "^2.10.6",
+    "mysql": "^2.10.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "serve-static": "^1.10.0",
+    "watch": "^0.17.1"
+  },
+  "scripts": {
+    "test": "echo \"Achtung!\"",
+    "test:jshint": "jshint source/js/*.js",
+    "prebuild": "npm run clean -s",
+    "clean": "rm -r dist/*",
+    "build": "npm run build:js && npm run build:css && npm run build:fonts && npm run build:images",
+    "build:js": "node build-js.js",
+    "build:css": "sass source/scss/main.scss dist/style.css",
+    "build:fonts": "rm -r -f dist/fonts/ && mkdir -p dist/fonts/ && cp -r source/fonts/* dist/fonts/",
+    "build:images": "rm -r -f dist/img/ && mkdir -p dist/img/ && cp -r source/img/* dist/img/",
+    "build:watch": "parallelshell 'npm run watch:js' 'npm run watch:css' 'npm run watch:html' 'npm run watch:fonts' 'npm run watch:images' 'npm run livereload'",
+    "watch:js": "npm run build:js -- -w",
+    "watch:css": "sass --watch source/scss/main.scss:dist/style.css",
+    "watch:fonts": "watch 'npm run build:fonts' source/fonts/",
+    "watch:images": "watch 'npm run build:images' source/img/"
+  },
+  "keywords": [
+    "aaron",
+    "application",
+    "group",
+    "management"
+  ],
+  "author": "Emil Hemdal",
+  "license": "AGPL-3.0",
+  "private": true,
+  "jshintConfig": {
+    "node": true,
+    "bitwise": true,
+    "curly": true,
+    "eqeqeq": true,
+    "latedef": "nofunc",
+    "noarg": true,
+    "nonbsp": true,
+    "nonew": true,
+    "shadow": false,
+    "singleGroups": true,
+    "undef": true,
+    "unused": true,
+    "globalstrict": true
+  }
+}
