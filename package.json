@@ -7,7 +7,9 @@
     "babel-preset-react": "^6.3.13",
     "babelify": "^7.2.0",
     "body-parser": "^1.14.2",
+    "browserify": "^12.0.1",
     "cookies": "^0.5.1",
+    "exorcist": "^0.4.0",
     "express": "^4.13.3",
     "jade": "^1.11.0",
     "js-cookie": "^2.0.3",
@@ -17,7 +19,8 @@
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "serve-static": "^1.10.0",
-    "watch": "^0.17.1"
+    "watch": "^0.17.1",
+    "watchify": "^3.6.1"
   },
   "scripts": {
     "test": "echo \"Achtung!\"",

@@ -31,15 +31,16 @@ var mysql       = require('mysql');
 
 var app = express();
 
-var jadeGen = require('./lib/jadeGenerator.js');
-var AM      = require('./lib/accountManager.js');
-var login   = require('./lib/login.js');
+var jadeGen       = require('./lib/jadeGenerator.js');
+var browserifyGen = require('./lib/browserifyGenerator.js');
+var AM            = require('./lib/accountManager.js');
+var login         = require('./lib/login.js');
 
-var AM      = require('./lib/accountManager.js');
+var AM            = require('./lib/accountManager.js');
 
-var config     = require('./config.json');
+var config        = require('./config.json');
 
-var pool  = mysql.createPool({
+var pool = mysql.createPool({
   connectionLimit:  25,
   host:             config.mysql.host,
   user:             config.mysql.user,
@@ -58,6 +59,12 @@ pool.getConnection(function(err, connection) {
 });
 
 AM.setPool(pool);
+
+if(config.production) {
+  browserifyGen.build();
+} else {
+  browserifyGen.watch();
+}
 
 app.set('trust proxy', true);
 
