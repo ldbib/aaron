@@ -61,5 +61,13 @@
     "undef": true,
     "unused": true,
     "globalstrict": true
+  },
+  "browser": {
+    "jquery": "./public/js/vendor/jquery.min.js"
+  },
+  "browserify-shim": {
+    "jquery": {
+      "exports": "$"
+    }
   }
 }

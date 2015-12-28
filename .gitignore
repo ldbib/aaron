@@ -1,3 +1,5 @@
 node_modules/
 config.json
 *.log
+public/js/admin.js
+public/js/admin.js.map
