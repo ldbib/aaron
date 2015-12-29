@@ -18,17 +18,31 @@
   You should have received a copy of the GNU Affero General Public License
   along with Aaron.  If not, see <http://www.gnu.org/licenses/>.
 
-extends ./includes/base.jade
+extends ./includes/angular-base.jade
 
 block title
   title Aaron - Admin
 
 block content
-  div.row
-    div.large-12.columns
-
-    div#content
-
+  div.max-height(ng-controller="PermissionsController as permissions")
+    div.row.expanded.max-height(ng-controller="PanelController as panel")
+      div.small-4.medium-3.large-2.columns.max-height#sidebar
+        ul.menu.vertical
+          li(ng-class="{ active:panel.isSelected('users') }")
+            a(href ng-click="panel.selectTab('users')") Användare
+          li(ng-class="{ active:panel.isSelected('permissions') }")
+            a(href ng-click="panel.selectTab('permissions')") Behörigheter
+      div.small-8.medium-9.large-10.columns(ng-show="panel.isSelected('users')" ng-controller="UserController as userControll")
+        h2 Användare
+        label(ng-show="userControll.organizations")
+          | Organisationer
+          select
+            options(ng-repeat="organizations in ")
+        div()
+          div.row.columns(ng-repeat="user in userControll.users")
+            | {{user.firstName}}
+      div.small-8.medium-9.large-10.columns(ng-show="panel.isSelected('permissions')")
+        h2 Behörigheter
 
 
   script(src='js/admin.js')

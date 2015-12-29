@@ -22,6 +22,14 @@
  *
  */
 
+html, body {
+  height: 100%;
+}
+
+.max-height {
+  height: 100%;
+}
+
 div.help-tab {
   position: absolute;
   width: 100%;
@@ -40,4 +48,17 @@ div.help-tab a {
 
 a.lg-click {
   padding: 5px 10px;
+}
+
+.user {
+  border-bottom: 1px solid black;
+}
+
+.userEditor {
+  padding-top: 15px;
+  position: relative;
+}
+
+#sidebar {
+  background-color: blue;
 }

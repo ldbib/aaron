@@ -25,83 +25,52 @@
 
 'use strict';
 
-var React = require('react');
-var ReactDOM = require('react-dom');
+var angular = require('angular');
 
-var $ = require('jquery');
+var app = angular.module('adminPanel', []);
 
-var UserManagement = React.createClass({
-  loadUsersFromServer: function() {
-    $.ajax({
-      url: this.props.url/*'/api/users'*/,
-      type: 'GET',
-      dataType: 'json',
-      cache: false,
-      success: function(data) {
-        this.setState({data: data});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        // TODO: error handling
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+var organizations = [
+  {
+    shortName: 'ld',
+    longName: 'Landstinget Dalarna'
   },
-  getInitialState: function() {
-    return {data: []};
-  },
-  componentDidMount: function() {
-    this.loadUsersFromServer();
-  },
-  render: function() {
-    return (
-      <div className="userManagement">
-        <h1>Users</h1>
-        <UserList data={this.state.data} />
-      </div>
-    );
+  {
+    shortName: 'liv',
+    longName: 'Landstinget i Värmland'
   }
+];
+
+var workplaces = [
+  {
+    id: 1,
+    name: 'Lasarettsbiblioteket Falun'
+  }
+]
+
+app.controller('PermissionsController', function () {
+  this.organizationAccess = organizations; // TODO: Fetch permissions for this one
+  this.workplaceAccess = workplaces; // TODO: Fetch permissions for this one
 });
 
-var UserList = React.createClass({
-  render: function() {
-    var userNodes = this.props.data.map(function(user) {
-      return (
-        <User fullName={user.firstName + ' ' + user.lastName} id={user.id} />
-      );
-    });
-    return (
-      <div className="userList">
-        {userNodes}
-      </div>
-    );
-  }
+app.controller('OrgController', function () {
+  this.organizations = organizations;
 });
 
-var UserForm = React.createClass({
-  render: function() {
-    return (
-      <form className="userForm">
-        <input type="text" placeholder="Förnamn" />
-        <input type="text" placeholder="Efternamn" />
-        <input type="submit" value="Post" />
-      </form>
-    );
-  }
-});
+app.controller('UserController', ['$http', function ($http) {
+  var that = this;
+  this.users = [];
+  $http.get('data.json').success(function(data) {
+    that.users = data;
+  });
+}]);
 
-var User = React.createClass({
-  render: function() {
-    return (
-      <div className="user" key={this.props.id}>
-        <div className="userFullName">
-          {this.props.fullName}
-        </div>
-      </div>
-    );
-  }
-});
+app.controller('PanelController', function () {
+  this.tab = 'users';
 
-ReactDOM.render(
-  <UserManagement url="/data.json" />,
-  document.getElementById('content')
-);
+  this.selectTab = function (setTab) {
+    this.tab = setTab;
+  };
+  this.isSelected = function (checkTab) {
+    return this.tab === checkTab;
+  };
+});
