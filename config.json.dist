@@ -20,5 +20,9 @@
     "user":     "aaron",
     "password": "password",
     "database": "aaron"
+  },
+  "permissionIds": {
+    "editUserAtOrganization": [1,2],
+    "editUserAtWorkplace": [1,2,3]
   }
 }

@@ -38,6 +38,8 @@ var login         = require('./lib/login.js');
 
 var AM            = require('./lib/accountManager.js');
 
+var routeUser     = require('./route/user.js');
+
 var config        = require('./config.json');
 
 var pool = mysql.createPool({
@@ -102,7 +104,7 @@ app.get('/help', function(req, res) {
   res.end(html);
 });
 app.get('/admin', function(req, res) {
-  var html = jadeGen['admin.jade']();
+  var html = jadeGen['admin.jade']({app: 'adminPanel'});
   res.status(200).set({
     'Content-Type': 'text/html',
     'Content-Length': html.length,
