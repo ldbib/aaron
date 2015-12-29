@@ -38,7 +38,7 @@ var login         = require('./lib/login.js');
 
 var AM            = require('./lib/accountManager.js');
 
-var routeUser     = require('./route/user.js');
+var routeUser     = require('./routes/user.js');
 
 var config        = require('./config.json');
 
@@ -111,6 +111,8 @@ app.get('/admin', function(req, res) {
   });
   res.end(html);
 });
+
+routeUser(app);
 
 app.get('*', function (req, res) {
   res.status(404);
