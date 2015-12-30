@@ -3,15 +3,26 @@
 
 var AM = require('../lib/accountManager.js');
 
-var config = require('../config.json');
-
 module.exports = function(app) {
-  app.get('/users', function(req, res, next) {
+  app.get('/admin/users', function(req, res) {
+    var selectLimiter = {
+      organizations: req.organizationAdmin,
+      workplaces: req.workplaceAdmin
+    };
     if(!req.loggedIn) {
       return res.status(403).json({authenticate: 'first'}).end();
     }
-    console.log(req.permissions);
-    //if(req.permissions)
+
+    if(req.organizationAdmin.length === 0 && req.workplaceAdmin.length === 0) {
+      return res.status(200).json([]).end();
+    }
+
+    AM.getUsers(selectLimiter, function(err, users) {
+      if(err) {
+        return res.status(500).json({error: err}).end();
+      }
+      res.status(200).json(users).end();
+    });
   });
   //app.get('/user/:id', AM.getUser)
 };
