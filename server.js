@@ -29,6 +29,8 @@ var Cookies     = require('cookies');
 var path        = require('path');
 var mysql       = require('mysql');
 
+var debug       = require('debug')('aaron:server');
+
 var app = express();
 
 var jadeGen       = require('./lib/jadeGenerator.js');
@@ -57,14 +59,17 @@ pool.getConnection(function(err, connection) {
   if(err) {
     throw err;
   }
+  debug('MySQL: Database connected!');
   connection.release();
 });
 
 AM.setPool(pool);
 
 if(config.production) {
+  debug('We\'re in production!');
   browserifyGen.build();
 } else {
+  debug('We\'re in development!');
   browserifyGen.watch();
 }
 
@@ -117,6 +122,7 @@ app.get('/admin', function(req, res) {
 routeUser(app);
 
 app.get('*', function (req, res) {
+  debug('Reached 404.', req.url);
   res.status(404);
   res.end('404');
 });
