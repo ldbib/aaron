@@ -54,10 +54,10 @@ var pool = mysql.createPool({
  * Test the connection. Kill the server if it fails.
  */
 pool.getConnection(function(err, connection) {
-  connection.release();
   if(err) {
     throw err;
   }
+  connection.release();
 });
 
 AM.setPool(pool);
