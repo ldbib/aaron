@@ -88,6 +88,7 @@ app.use(AM.getPermissions);
 app.use('/admin', AM.getAdminStatus);
 
 app.post('/login', urlencodedParser, login.doLogin);
+app.get('/logout', urlencodedParser, login.doLogout);
 
 app.get('/', function (req, res) {
   if(!req.loggedIn) {
