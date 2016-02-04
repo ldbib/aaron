@@ -39,6 +39,7 @@ var AM            = require('./lib/accountManager.js');
 var login         = require('./lib/login.js');
 
 var AM            = require('./lib/accountManager.js');
+var password      = require('./lib/passwords.js');
 
 var routeUser     = require('./routes/user.js');
 
@@ -64,6 +65,9 @@ pool.getConnection(function(err, connection) {
 });
 
 AM.setPool(pool);
+
+
+password.setSalt(config.salts.serverSalt);
 
 if(config.production) {
   debug('We\'re in production!');
