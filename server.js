@@ -33,7 +33,7 @@ var debug       = require('debug')('aaron:server');
 
 var app = express();
 
-var pugGen        = require('./lib/jadeGenerator.js');
+var pugGen        = require('./lib/pugGenerator.js');
 var browserifyGen = require('./lib/browserifyGenerator.js');
 var AM            = require('./lib/accountManager.js');
 var login         = require('./lib/login.js');
