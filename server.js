@@ -2,8 +2,8 @@
  *
  * Aaron
  *
- * Copyright 2015 Landstinget Dalarna Bibliotek och Informationscentral
- * Copyright 2015 Emil Hemdal (@emilhem)
+ * Copyright 2015-2016 Landstinget Dalarna Bibliotek och Informationscentral
+ * Copyright 2015-2016 Emil Hemdal (@emilhem)
  *
  * Aaron is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by

@@ -2,8 +2,8 @@
 
 /**
  *
- * Copyright 2015 Landstinget Dalarna Bibliotek och Informationscentral
- * Copyright 2015 Emil Hemdal (@emilhem)
+ * Copyright 2015-2016 Landstinget Dalarna Bibliotek och Informationscentral
+ * Copyright 2015-2016 Emil Hemdal (@emilhem)
  *
  *
  * This file is part of Aaron.

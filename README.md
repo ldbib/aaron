@@ -1,7 +1,7 @@
 ## aaron-serve
 
 ### Copyright
-2015 Landstinget Dalarna Bibliotek och Informationscentral [https://www.ldbib.se/](https://www.ldbib.se/)
+2015-2016 Landstinget Dalarna Bibliotek och Informationscentral [https://www.ldbib.se/](https://www.ldbib.se/)
 
 ### Author
 
