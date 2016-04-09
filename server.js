@@ -33,7 +33,7 @@ var debug       = require('debug')('aaron:server');
 
 var app = express();
 
-var jadeGen       = require('./lib/jadeGenerator.js');
+var pugGen        = require('./lib/jadeGenerator.js');
 var browserifyGen = require('./lib/browserifyGenerator.js');
 var AM            = require('./lib/accountManager.js');
 var login         = require('./lib/login.js');
@@ -99,7 +99,7 @@ app.get('/', function (req, res) {
     return login.render(req, res);
   }
 
-  var html = jadeGen['main.jade']();
+  var html = pugGen['main.pug']();
   res.status(200);
   res.set({
     'Content-Type': 'text/html',
@@ -108,7 +108,7 @@ app.get('/', function (req, res) {
   res.end(html);
 });
 app.get('/help', function(req, res) {
-  var html = jadeGen['help.jade']();
+  var html = pugGen['help.pug']();
   res.status(200).set({
     'Content-Type': 'text/html',
     'Content-Length': html.length,
@@ -116,7 +116,7 @@ app.get('/help', function(req, res) {
   res.end(html);
 });
 app.get('/admin', function(req, res) {
-  var html = jadeGen['admin.jade']({app: 'adminPanel'});
+  var html = pugGen['admin.pug']({app: 'adminPanel'});
   res.status(200).set({
     'Content-Type': 'text/html',
     'Content-Length': html.length,
